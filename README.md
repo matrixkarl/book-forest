@@ -1,4 +1,4 @@
-# Book Forest
+# Book Forest 🌲
 
 Book Forest is a simple Python application designed to help readers collect and organize unfamiliar words they encounter while reading.
 
