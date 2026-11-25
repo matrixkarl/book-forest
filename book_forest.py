@@ -20,14 +20,25 @@ import json
 # pathlib lets us work with files and folders and Path is a class that represents the location of a file or folder
 from pathlib import Path
 
+# create a function to load data
+def load_data(file):
+    if file.exists():
+        with open(file, 'r') as f:
+            return json.load(f)
+    else:
+        return {}
+
+
+# create function to save data
+def save_data(word_collector, file):
+    with open(file, mode='w') as f:
+        json.dump(word_collector, f)
+
 # create an object or an instance of the Path class, but it does not create the file itself or open a file 
 file = Path('wordy_collector.json')
 
-if file.exists():
-    with open(file, 'r') as f:
-        wordy_collector = json.load(f)
-else:
-    wordy_collector = {}
+# check if the file exists
+wordy_collector = load_data(file)
 
 choice = ''
 
@@ -60,12 +71,10 @@ while choice != 'n':
         word_choice = input('add more words?\ny for yes n for no:').lower()
 
         # save data
-        with open(file, mode='w') as f:
-            json.dump(wordy_collector, f)
+        save_data(wordy_collector, file)
+        
+    choice = input('would you like to add another book?\ny for yes n for no: ').lower()
 
-    choice = input('would you like to add another book? ')
-
-    
 
 print(wordy_collector)
 
